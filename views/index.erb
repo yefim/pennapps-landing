@@ -156,7 +156,7 @@
     <div class='sign_up'>
       <div id='message'></div>
       <form method='post' class='sign_up_form' action='<%= @action %>'>
-        <input type='email' name='email'/>
+        <input placeholder='email@address.com' type='email' name='email'/>
         <button class='submit'>Go</button>
       </form>
       <script type='text/javascript'>
@@ -178,15 +178,6 @@
           });
         });
       </script>
-    </div>
-    <div class="signup">
-        <div class="circle">
-          <a target="_blank" href="http://launchrock.com/">          
-            <div class="square">
-              <div id="signup_now">Sign Up Now</div>
-            </div>
-          </a>
-        </div>
     </div>
   </div>
 <p></p>
@@ -224,7 +215,7 @@
     
   <div id="previous_sponsors" class='prev-container'>
     <div class='heading'>
-      <h2><span>Previous Sponsors Include</span></h2>
+      <h2><span>Current Sponsors Include</span></h2>
     </div>
     <div class='sponsors'>
       <% @@sponsors.each do |sponsor| %>

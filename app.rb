@@ -3,24 +3,29 @@ require 'json'
 require 'securerandom'
 require 'debugger'
 require_relative 'models'
+require_relative 'mail'
 
 # sponsors go ['name', 'background-color', 'link', 'default-bg-color', 'additonal classes']
 @@sponsors = [
   ['facebook', '#2B579E', 'http://facebook.com'],
-  ['github', 'white', 'http://github.com'],
-  ['twitter', 'white', 'http://twitter.com'],
-  ['twilio','white', 'http://twilio.com'],
+  # ['github', 'white', 'http://github.com'],
+  # ['twitter', 'white', 'http://twitter.com'],
+  # ['twilio','white', 'http://twilio.com'],
   ['google', 'white', 'http://google.com'],
   ['mongodb', '#3C2919', 'http://mongodb.com'],
-  ['a16z', 'white', 'http://a16z.com'],
+  # ['a16z', 'white', 'http://a16z.com'],
   ['venmo', 'white', 'http://venmo.com'],
   ['hunch', 'white', 'http://hunch.com'],
-  ['microsoft', 'white', 'http://microsoft.com'],
-  ['cloudmine', 'white', 'http://cloudmine.me'],
+  # ['microsoft', 'white', 'http://microsoft.com'],
+  # ['cloudmine', 'white', 'http://cloudmine.me'],
   #  ['monetate', 'white', 'http://monetate.com'],
   #  ['color', '#93b9b1', 'http://color.com'],
-  ['zynga', 'white', 'http://zynga.com'],
+  # ['zynga', 'white', 'http://zynga.com'],
   ['tumblr', '#2C4762', 'http://tumblr.com'],
+  ['palantir', 'white', 'http://palantir.com'],
+  ['mashery', 'white', 'http://mashery.com'],
+  ['yahoo', 'white', 'http://yahoo.com'],
+  ['lore', 'white', 'http://lore.com'],
   ['allsponsors', 'white', '/sponsors'],
   ['sponsorpennapps', '#B62F2F', 'http://pennapps.com/sponsorship.pdf', '#B62F2F', 'no-opacity']
 ]
@@ -53,8 +58,10 @@ post '/:rec_url?' do |rec_url|
     if rec_url && rec = User.first(recommendation_url: rec_url)
       debugger
       rec.recommendations << Recommendation.create(email: params[:email])
+      # email(
       rec.save
     end
+    email(to: u.email, subject: 'Thank you for registering', body: "Currently, you have #{u.recommendations.length} referrals. Your personal URL is http://pennapps.com/#{u.recommendation_url}")
     resp["message"] = "Your unique URL is http://pennapps.com/#{u.recommendation_url}"
     content_type :json
     resp.to_json
