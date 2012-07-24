@@ -50,7 +50,7 @@ post '/:rec_url?' do |rec_url|
   if u.save
     if rec_url && rec = User.first(recommendation_url: rec_url)
       debugger
-      rec.users << Recommendation.create(email: params[:email])
+      rec.recommendations << Recommendation.create(email: params[:email])
       rec.save
     end
     redirect '/'
