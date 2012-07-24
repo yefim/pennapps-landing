@@ -1,6 +1,6 @@
 require 'data_mapper'
 
-DataMapper::Logger.new($stdout, :debug)
+# DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
 
 class User
@@ -19,4 +19,4 @@ class Recommendation
   property :email, String
 end
 
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!

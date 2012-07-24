@@ -58,9 +58,10 @@ post '/:rec_url?' do |rec_url|
     if rec_url && rec = User.first(recommendation_url: rec_url)
       debugger
       rec.recommendations << Recommendation.create(email: params[:email])
-      # email(
+      # Email.create(
       rec.save
     end
+    # use resque to email
     email(to: u.email, subject: 'Thank you for registering', body: "Currently, you have #{u.recommendations.length} referrals. Your personal URL is http://pennapps.com/#{u.recommendation_url}")
     resp["message"] = "Your unique URL is http://pennapps.com/#{u.recommendation_url}"
     content_type :json
