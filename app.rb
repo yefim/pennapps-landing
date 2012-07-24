@@ -37,6 +37,10 @@ end
 
 post '/' do
   u = User.new(email: params[:email])
-  content_type :json
-  u.save
+  if u.save
+    redirect '/'
+  else
+    # should use flash for error or something
+    redirect '/'
+  end
 end
