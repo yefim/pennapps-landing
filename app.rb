@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'securerandom'
 require 'debugger'
 require_relative 'models'
 
@@ -40,7 +41,10 @@ get '/sponsors' do
 end
 
 post '/' do
-  u = User.new(email: params[:email])
+  u = User.new(
+    email: params[:email],
+    recommendation_url: SecureRandom.hex(3)
+  )
   if u.save
     redirect '/'
   else
