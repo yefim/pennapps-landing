@@ -91,6 +91,7 @@
 }
 
 .left {
+  pointer-events: none;
 	border-radius:5px;
 	padding-top:17px;
 	padding-left:17px;
@@ -102,6 +103,7 @@
 }
 
 .right {
+  pointer-events: none;
 	margin-left:170px;
 /*	background-color: green;*/
 	padding-top:92px;
