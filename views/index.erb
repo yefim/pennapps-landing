@@ -154,7 +154,7 @@
       <!-- http://support.google.com/calendar/bin/answer.py?hl=en&answer=1186917 -->
     </div>
     <div class='sign_up'>
-      <form method='post' class='sign_up_form'>
+      <form method='post' class='sign_up_form' action='<%= @action %>'>
         <input type='email' name='email'/>
         <input type='submit' value='Go'/>
       </form>
@@ -207,7 +207,7 @@
       <h2><span>Previous Sponsors Include</span></h2>
     </div>
     <div class='sponsors'>
-      <% @sponsors.each do |sponsor| %>
+      <% @@sponsors.each do |sponsor| %>
         <div 
           data-link='<%= sponsor[2] %>'
           data-bgcolor='<%= sponsor[1] %>'
@@ -242,7 +242,7 @@
       <h2><span>Time Machine</span></h2>
     </div>
     <div class="pennapses">
-      <% @pennappses.each do |pennapps| %>
+      <% @@pennappses.each do |pennapps| %>
         <div 
           style='background-image: url("img/<%= pennapps[0]+pennapps[1] %>.png")'
           id='<%= pennapps[0] + pennapps[1] %>'

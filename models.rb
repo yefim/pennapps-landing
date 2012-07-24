@@ -9,7 +9,14 @@ class User
   property :id, Serial
   property :email, String
   property :recommendation_url, String
-  has n, :users, :through => Resource
+  has n, :recommendations
+end
+
+class Recommendation
+  include DataMapper::Resource
+  
+  property :id, Serial
+  property :email, String
 end
 
 DataMapper.auto_migrate!
