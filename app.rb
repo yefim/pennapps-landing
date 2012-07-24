@@ -1,4 +1,6 @@
 require 'sinatra'
+require 'debugger'
+require_relative 'models'
 
 get '/' do
   # sponsors go ['name', 'background-color', 'link', 'default-bg-color', 'additonal classes']
@@ -31,4 +33,10 @@ get '/' do
     ['Fall', '2009', 'http://pennapps.com/2009']
   ]
   erb :index
+end
+
+post '/' do
+  u = User.new(email: params[:email])
+  content_type :json
+  u.save
 end
