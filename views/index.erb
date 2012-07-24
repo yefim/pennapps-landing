@@ -201,38 +201,17 @@
       <h2><span>Previous Sponsors Include</span></h2>
     </div>
     <div class='sponsors'>
+      <% @sponsors.each do |sponsor| %>
+        <div 
+          data-link='<%= sponsor[2] %>'
+          data-bgcolor='<%= sponsor[1] %>'
+          data-sponsor='<%= sponsor[0] %>'
+          data-loadcolor='<%= sponsor[3] || '#515151' %>'
+          style='background-image: url("img/<%= sponsor[0] %>_white.png")'
+          class='sponsor <%= sponsor[4] %>' >
+        </div>
+      <% end %>
       <script type='text/javascript'>
-        // sponsors go ['name', 'background-color', 'link', 'default-bg-color', 'additonal classes']
-        var sponsors = [
-          ['facebook', '#2B579E', 'http://facebook.com'],
-          ['github', 'white', 'http://github.com'],
-          ['twitter', 'white', 'http://twitter.com'],
-          ['twilio','white', 'http://twilio.com'],
-          ['google', 'white', 'http://google.com'],
-          ['mongodb', '#3C2919', 'http://mongodb.com'],
-          ['a16z', 'white', 'http://a16z.com'],
-          ['venmo', 'white', 'http://venmo.com'],
-          ['hunch', 'white', 'http://hunch.com'],
-          ['microsoft', 'white', 'http://microsoft.com'],
-          ['cloudmine', 'white', 'http://cloudmine.me'],
-          // ['monetate', 'white', 'http://monetate.com'],
-          // ['color', '#93b9b1', 'http://color.com'],
-          ['zynga', 'white', 'http://zynga.com'],
-          ['tumblr', '#2C4762', 'http://tumblr.com'],
-          ['allsponsors', 'white', 'sponsors.html'],
-          ['sponsorpennapps', '#B62F2F', 'http://pennapps.com/sponsorship.pdf', '#B62F2F', 'no-opacity']
-        ];
-        var html = "";
-        $.each(sponsors, function(index, sponsor) {
-          html += "<div "+
-            "data-link='"+sponsor[2]+"' "+
-            "data-bgcolor='"+sponsor[1]+"' "+
-            "data-sponsor='"+sponsor[0]+"' "+
-            "data-loadcolor='"+(sponsor[3] || '#515151')+"' "+ //#515151 is the default
-            "style='background-image: url(img/"+sponsor[0]+"_white.png)' "+
-            "class='sponsor "+sponsor[4]+"'></div>";
-        });
-        document.write(html);
         $('.sponsor').each(function() {
           $(this).css('background-color', $(this).data('loadcolor'));
         });
@@ -257,33 +236,27 @@
       <h2><span>Time Machine</span></h2>
     </div>
     <div class="pennapses">
+      <% @pennappses.each do |pennapps| %>
+        <div 
+          style='background-image: url("img/<%= pennapps[0]+pennapps[1] %>.png")'
+          id='<%= pennapps[0] + pennapps[1] %>'
+          class='pennapps_container'
+          data-link='<%= pennapps[2] %>' >
+          <div class='pennapps'>
+            <div class='left'>
+              <span class='season'><%= pennapps[0] %></span>
+              <span class='year'><%= pennapps[1] %></span>
+            </div>
+            <div class='right'></div>
+          </div>
+        </div>
+      <% end %>
       <script type='text/javascript'>
-        // pennappses go ['season', 'year', 'link']
-        var pennappses = [
-          ['Spring', '2012', 'http://2012s.pennapps.com/'],
-          ['Fall', '2011', 'http://2011f.pennapps.com/'],
-          ['Spring', '2011', 'http://pennapps.com/spring2011/'],
-          ['Fall', '2010', 'http://pennapps.com/2010'],
-          ['Fall', '2009', 'http://pennapps.com/2009']
-        ];
-        var html = "";
-        $.each(pennappses, function(index, pennapps) {
-          html += "<div style='background-image: url(img/"+pennapps[0]+pennapps[1]+".png)' class='pennapps_container' data-link='"+pennapps[2]+"'";
-          html += "<div class='pennapps' id='"+pennapps[0]+pennapps[1]+"'>";
-          html += "<div class='left'>";
-          html +=   "<span class='season'>"+pennapps[0]+"</span>";
-          html +=   "<span class='year'>"+pennapps[1]+"</span>";
-          html += "</div>";
-          html += "<div class='right'></div>";
-          html += "</div>";
-          html += "</div>";
-        });
-        document.write(html);
         $('.pennapps_container').on('click', function() {
           window.open($(this).data('link'),'_blank');
         });
         $('.pennapps_container').on('mouseenter touchstart', function() {
-          // console.log($(this).attr('id'));
+          console.log($(this).attr('id'));
           $(this).css('background-image', "url(img/"+$(this).attr('id')+"_active.png)");
         });
         $('.pennapps_container').on('mouseout touchend', function() {
