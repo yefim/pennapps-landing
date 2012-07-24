@@ -154,10 +154,30 @@
       <!-- http://support.google.com/calendar/bin/answer.py?hl=en&answer=1186917 -->
     </div>
     <div class='sign_up'>
+      <div id='message'></div>
       <form method='post' class='sign_up_form' action='<%= @action %>'>
         <input type='email' name='email'/>
-        <input type='submit' value='Go'/>
+        <button class='submit'>Go</button>
       </form>
+      <script type='text/javascript'>
+        $('.sign_up_form .submit').on('click', function(e) {
+          e.preventDefault();
+          $.ajax({
+            url: document.location,
+            type: 'post',
+            data: $(this).closest('form').serialize(),
+            success: function(resp) {
+              console.log(resp);
+              if (resp.message) {
+                $('#message').html(resp.message);
+              }
+            },
+            error: function(resp) {
+              console.log('error');
+            }
+          });
+        });
+      </script>
     </div>
     <div class="signup">
         <div class="circle">

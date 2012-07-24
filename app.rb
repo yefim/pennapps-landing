@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'json'
 require 'securerandom'
 require 'debugger'
 require_relative 'models'
@@ -43,6 +44,7 @@ get '/:rec_url?' do |rec_url|
 end
 
 post '/:rec_url?' do |rec_url|
+  resp = {}
   u = User.new(
     email: params[:email],
     recommendation_url: SecureRandom.hex(3)
@@ -53,9 +55,12 @@ post '/:rec_url?' do |rec_url|
       rec.recommendations << Recommendation.create(email: params[:email])
       rec.save
     end
-    redirect '/'
+    resp["message"] = "Your unique URL is http://pennapps.com/#{u.recommendation_url}"
+    content_type :json
+    resp.to_json
   else
-    # should use flash for error or something
-    redirect '/'
+    resp["error"] = "Invalid email"
+    context_type :json
+    resp.to_json
   end
 end
