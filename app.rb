@@ -20,7 +20,7 @@ get '/' do
     #  ['color', '#93b9b1', 'http://color.com'],
     ['zynga', 'white', 'http://zynga.com'],
     ['tumblr', '#2C4762', 'http://tumblr.com'],
-    ['allsponsors', 'white', 'sponsors.html'],
+    ['allsponsors', 'white', '/sponsors'],
     ['sponsorpennapps', '#B62F2F', 'http://pennapps.com/sponsorship.pdf', '#B62F2F', 'no-opacity']
   ]
   
@@ -33,6 +33,10 @@ get '/' do
     ['Fall', '2009', 'http://pennapps.com/2009']
   ]
   erb :index
+end
+
+get '/sponsors' do
+  erb :sponsors
 end
 
 post '/' do
