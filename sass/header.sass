@@ -1,0 +1,53 @@
+header.main-header
+    top: 0
+    width: 100%
+    z-index: 100
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2)
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2)
+    -o-box-shadow: 0 1px 4px rgba(0,0,0,0.2)
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2)
+    border-bottom: 1px solid white
+    min-width: 1020px
+    height: 130px
+
+header .header-nav
+    position: relative
+    width: 1020px
+
+header .header-nav::after
+    content: ""
+    display: table
+    clear: both
+
+header .home-link
+    left: 0
+    display: block
+    width: 256px
+    padding: 48px 60px 0
+
+header .home-link, header .actions
+    position: absolute
+    top: 0
+    height: 130px
+
+header .actions
+    right: 1px
+    z-index: 1
+    width: 195px
+    padding: 30px 0 0 60px
+
+header .nav-list
+    right: 195px
+    padding-left: 1px
+    margin: 0
+    padding: 0
+    border: 0
+    overflow: hidden
+
+header .nav-list li
+    display: inline-block
+    vertical-align: middle
+    white-space: nowrap
+
+ol, ul
+    list-style: none
